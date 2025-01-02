@@ -1,0 +1,47 @@
+# second largest element in the array
+
+# Bruteforce
+```py
+arr = [1,2,4,59,7,5]
+arr.sort()   # TC - O(NlogN)
+n=len(arr)
+largest_element = arr[n-1]
+second_largest_element =-1
+for i in range(n-2,-1,-1):
+    if arr[i]!=largest_element:
+        second_largest_element=arr[i]
+print(second_largest_element)
+```
+TC - O(NlogN + N )
+
+# Better
+```py
+arr = [1,2,4,5,7,5]
+n =len(arr)
+largest_element = arr[0]
+for i in range(n):   # TC - O(N)
+    if arr[i]>largest_element:
+        largest_element=arr[i]
+second_largest = -1
+for i in range(n): # TC - O(N)
+    if arr[i]>second_largest and arr[i]<largest_element:
+        second_largest = arr[i]
+print(second_largest)
+```
+TC - O(2N)
+
+# Optimized
+```py
+arr = [1,2,4,5,7,5,9]
+n =len(arr)
+largest_element = arr[0]
+second_largest_element = -1
+for i in range(n):  # TC - O(N)
+    if arr[i]>largest_element and arr[i]>second_largest_element:
+        second_largest_element=largest_element
+        largest_element=arr[i]
+    elif arr[i]<largest_element and arr[i]>second_largest_element:
+        second_largest_element=arr[i]
+print(second_largest_element)
+```
+TC - O(N)
