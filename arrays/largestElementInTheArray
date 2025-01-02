@@ -1,0 +1,26 @@
+# Largest Element in the array
+```py
+arr = [10,23,13,41,28,2,6]
+laragest_element = arr[0]
+n=len(arr)
+for i in range(n):
+    if arr[i]>laragest_element:
+        laragest_element=arr[i]
+print(laragest_element)
+```
+TC - O(N)
+
+# Largest Element in the array (Recursive)
+```py
+arr = [10,23,13,41,28,2,6]
+n=len(arr)
+def find_largest(arr,index,laragest_element):
+    if index==0:
+        return laragest_element
+    if arr[index-1]>laragest_element:
+        laragest_element=arr[index-1]
+    return find_largest(arr,index-1,laragest_element)
+result = find_largest(arr,n-1,arr[n-1])
+print(result)
+```
+TC - O(N)
