@@ -1,0 +1,14 @@
+# Check if an Array is Sorted
+
+# Optimized
+```py
+arr = [1,2,3,4,5]
+n = len(arr)
+is_sorted = True
+for i in range(n-1):
+    if arr[i]>arr[i+1]:
+        is_sorted = False
+        break
+print(is_sorted)
+```
+TC - O(N-1)
