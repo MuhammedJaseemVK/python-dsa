@@ -12,6 +12,7 @@ for i in range(n):
     else:
         max_count = count
         count=0
+print(max_count)
 ```
 TC - O(n)
 SC - O(1)
