@@ -1,4 +1,4 @@
-# Find the missing number in an array
+# Find the number that appears once, and the other numbers twice
 
 # Bruteforce
 ```py
