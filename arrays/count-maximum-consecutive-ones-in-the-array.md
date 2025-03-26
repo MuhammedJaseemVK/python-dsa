@@ -12,7 +12,7 @@ for i in range(n):
     else:
         max_count = count
         count=0
-    max_Count = max(count,max_count)
+    max_count = max(count,max_count)
 print(max_count)
 ```
 TC - O(n)
