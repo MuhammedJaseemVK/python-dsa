@@ -10,7 +10,6 @@ for i in range(n):
     if nums[i]==1:
         count+=1
     else:
-        max_count = count
         count=0
     max_count = max(count,max_count)
 print(max_count)
