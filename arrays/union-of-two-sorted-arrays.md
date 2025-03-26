@@ -48,7 +48,6 @@ m = len(arr1)
 n = len(arr2)
 
 result_array = []
-hash_map = set()
 
 left = 0
 right = 0
