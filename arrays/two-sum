@@ -1,0 +1,80 @@
+# Two Sum : Check if a pair with given sum exists in Array
+
+# Bruteforce
+```py
+nums = [2,6,5,8,11]
+n = len(nums)
+target = 15
+
+def two_sum(nums):
+    for i in range(n-1):
+        for j in range(i+1,n):
+            sum = nums[i]+nums[j]
+            if sum == target:
+                return [i,j]
+
+    return [-1,-1]
+
+result = two_sum(nums)
+print(result)
+```
+TC - O(N^2)
+SC - O(1)
+
+# Hashmap (Better)
+```py
+nums = [2,6,5,8,11]
+n = len(nums)
+target = 15
+
+hash_map = {}
+
+def two_sum(array):
+    for i in range(n):
+        hash_map[nums[i]]= i
+
+    for i in range(i):
+        required_element = target - nums[i]
+        if required_element in hash_map:
+            j = hash_map[required_element]
+            return [i,j]
+
+    return [-1,-1]
+
+result = two_sum(nums)
+print(result)
+```
+TC - O(N)
+SC - O(N)
+
+# Two pointer - Optimized
+```py
+#
+nums = [2,6,5,8,11]
+n = len(nums)
+target = 14
+
+def two_sum(array,target):
+    # Here since we are sorting, the indexes will change.
+    # So we can use this method only for checking if twoSum is possible. 
+    array.sort()
+
+    left = 0
+    right = n - 1
+
+    while(left<=right):
+        sum = nums[left] + nums[right]
+        if sum < target:
+            left+=1
+        elif sum > target:
+            right-=1
+        else:
+            return True
+    
+    return False
+
+result = two_sum(nums,target)
+print(result)
+```
+TC - O(NlogN)
+SC - O(1)
