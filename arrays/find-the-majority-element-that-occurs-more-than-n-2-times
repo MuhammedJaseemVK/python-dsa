@@ -1,0 +1,71 @@
+# Find the Majority Element that occurs more than N/2 times
+
+# Bruteforce
+```py
+import math
+nums = [2, 2, 1, 1, 1, 2, 2]
+
+def majority_element(nums):
+    n = len(nums)
+
+    for i in range(n):
+        count = 0
+        for j in range(n):
+            if nums[i] == nums[j]:
+                count+=1
+        if count >= math.ceil(n/2):
+            return nums[i]
+    return -1
+
+result = majority_element(nums)
+print(result)
+```
+TC - O(N^2)
+SC - O(1)
+
+# Hashmap (Better)
+```py
+import math
+nums = [2, 2, 1, 1, 1, 2, 2]
+
+def majority_element(nums):
+    n = len(nums)
+    hash_map = {}
+
+    for i in range(n):
+        if nums[i] not in hash_map:
+            hash_map[nums[i]] = 1
+        else:
+            hash_map[nums[i]] += 1
+
+    for number,count in hash_map.items():
+        if count >= math.ceil(n/2):
+            return number
+    return -1
+
+result = majority_element(nums)
+print(result)
+```
+TC - O(NlogN) + O(N)  # O(NlogN) for inserting N elements to the hashmap
+SC - O(N)
+
+# optimized - Moore's voting algorithm
+```py
+#
+nums = [2, 2, 1, 1, 1, 2, 2]
+n = len(nums)
+count = 0
+element = None
+for i in range(n):
+    if count == 0:
+        count = 1
+        element = nums[i]
+    elif nums[i] == element:
+        count += 1
+    else:
+        count -= 1
+print(element)
+
+```
+TC - O(N)
+SC - O(1)
