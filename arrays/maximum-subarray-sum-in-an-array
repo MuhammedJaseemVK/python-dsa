@@ -1,0 +1,86 @@
+# Maximum Subarray Sum in an Array
+
+# Bruteforce
+```py
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+n = len(nums)
+
+max_sum = nums[0]
+indexes = [0,0]
+
+for i in range(n):
+    for j in range(i,n):
+        sum = 0
+        for k in range(i,j+1):
+            sum+=nums[k]
+        if sum > max_sum:
+            max_sum = sum
+            indexes = [i,j]
+
+print(max_sum)
+print(nums[indexes[0]:indexes[1]+1])
+```
+TC - O(N^3)
+SC - O(1)
+
+# Better bruteforce
+```py
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+n = len(nums)
+
+max_sum = nums[0]
+indexes = [0,0]
+
+for i in range(n):
+    sum = 0
+    for j in range(i,n):
+        sum+=nums[j]
+        if sum > max_sum:
+            max_sum = sum
+            indexes = [i,j]
+
+print(max_sum)
+print(nums[indexes[0]:indexes[1]+1])
+```
+TC - O(N^2)
+SC - O(1)
+
+# Kadane's alogirithm - optimized
+```py
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+n = len(nums)
+def maximum_subarray(nums):
+    sum = 0
+    maximum = float('-inf')
+
+    subarray_start = -1
+    subarray_end = -1
+    start = -1
+
+    for i in range(n):
+        if sum == 0:
+            start = i
+
+        sum += nums[i]
+
+        if sum > maximum:
+            maximum = sum
+            subarray_start = start
+            subarray_end = i
+        
+        if sum < 0:
+            sum = 0
+
+    # if you need greater than zero sum, and there is no such subarray  and want to return empty subarray
+    # if maximum < 0:
+    #     return []
+
+    print(maximum)
+    print(nums[subarray_start:subarray_end+1])
+
+    return maximum
+
+maximum_subarray(nums)
+```
+TC - O(N)
+SC - O(1)
