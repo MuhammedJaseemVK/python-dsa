@@ -1,0 +1,51 @@
+# Stock Buy And Sell
+
+# Bruteforce
+```py
+prices = [7,1,5,3,6,4]
+n = len(prices)
+
+max_gain = 0
+result = [-1,-1]
+
+for i in range(n-1):
+    for j in range(i+1,n):
+        gain = prices[j] - prices[i]
+        if i != j and gain > max_gain:
+        max_gain = gain
+        result = [i+1,j+1]
+
+print(result)
+print(max_gain)
+
+```
+TC - O(N^2)
+SC - O(1)
+
+# Optimized
+```py
+prices = [7,6,4,3,1]
+n = len(prices)
+
+min_price = float('inf')
+max_profit = 0
+
+buy_day = -1
+sell_day = -1
+
+for i in range(n):
+    min_price = min(min_price,prices[i])
+    if prices[i] < min_price:
+        min_price = prices[i]
+        buy_day = i+1
+    profit = prices[i] - min_price
+    if profit > max_profit:
+        max_profit = profit
+        sell_day = i+1
+result = [buy_day,sell_day]
+
+print(result)
+print(max_profit)
+```
+TC - O(N)
+SC - O(N)
