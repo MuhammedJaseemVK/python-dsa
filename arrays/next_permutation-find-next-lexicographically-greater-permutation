@@ -71,7 +71,7 @@ for i in range(len(permutations)):
         break
 
 if index == len(permutations) - 1:
-    print(first_permutation)
+    print(nums)
 else:
     print(permutations[index+1]) 
 ```
