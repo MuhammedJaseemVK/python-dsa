@@ -77,3 +77,35 @@ else:
 ```
 SC - O(1)  # no extra space
 TC - O(N! * N)
+
+# Optimized - only calculating the next the next permutation
+```py
+input_array = [1,2,3]
+
+def next_permutation(array):
+    n = len(array)
+    index = -1
+
+    for i in range(n-2,-1,-1):
+        if array[i] < array[i+1]:
+            index = i
+            break
+
+    if index == -1:
+        return array.reverse()
+
+    for i in range(n-1,-1,-1):
+        if array[i] > array[index]:
+            temp = array[i]
+            array[i] = array[index]
+            array[index] = temp
+            break
+    
+    array[index+1:] = reversed(array[index+1:])
+    return array
+
+result = next_permutation(input_array)
+print(result)
+```
+SC - O(1)  # no extra space
+TC - ~ O(3N)
