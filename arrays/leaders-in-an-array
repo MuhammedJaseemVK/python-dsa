@@ -1,0 +1,41 @@
+# Leaders in an array
+
+# Bruteforce
+```py
+nums = [10, 22, 12, 3, 0, 6]
+
+n = len(nums)
+leaders = []
+
+for i in range(n):
+    is_leader = True
+    for j in range(i+1,n):
+        if nums[i] < nums[j]:
+            is_leader = False
+            break
+    if is_leader:
+        leaders.append(nums[i])
+
+print(leaders)
+```
+# TC - O(N^2)
+# SC - O(N)
+
+# Optimized
+```py
+nums = [10, 22, 12, 3, 0, 6]
+n = len(nums)
+
+max_element = nums[n-1]
+leaders = [max_element]
+
+for i in range(n-2,-1,-1):
+    if nums[i] > max_element:
+        leaders.append(nums[i])
+        max_element = nums[i]
+
+print(leaders)
+```
+
+# TC - O(N)
+# SC - O(N)
