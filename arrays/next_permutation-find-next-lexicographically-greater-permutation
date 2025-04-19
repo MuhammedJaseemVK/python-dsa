@@ -1,0 +1,41 @@
+# next_permutation : find next lexicographically greater permutation
+
+# Optimized
+```py
+input = [1,3,2]
+n = len(input)
+
+permutation = []
+visited = [0] * n
+permutations = []
+
+first_permutation = input[:]
+first_permutation.sort()
+
+def find_permutations(nums,permutation,visited,permutations):
+    if len(permutation) == len(nums):
+        permutations.append(permutation[:]) # deep copy
+        return
+    for i in range(len(nums)):
+        if visited[i] == 0:
+            visited[i] = 1
+            permutation.append(nums[i])
+            find_permutations(nums,permutation,visited,permutations)
+            permutation.pop()
+            visited[i] = 0
+
+find_permutations(first_permutation,permutation,visited,permutations)
+
+index = -1
+for i in range(len(permutations)):
+    if permutations[i] == input:
+        index = i
+        break
+
+if index == len(permutations) - 1:
+    print(first_permutation)
+else:
+    print(permutations[index+1]) 
+```
+SC - O(N) + O(N)  ie, for permutation and visited array
+TC - O(N! * N)
