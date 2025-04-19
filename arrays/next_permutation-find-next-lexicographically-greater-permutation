@@ -1,6 +1,6 @@
 # next_permutation : find next lexicographically greater permutation
 
-# Optimized
+# Bruteforce
 ```py
 input = [1,3,2]
 n = len(input)
@@ -38,4 +38,42 @@ else:
     print(permutations[index+1]) 
 ```
 SC - O(N) + O(N)  ie, for permutation and visited array
+TC - O(N! * N)
+
+# Better
+```py
+nums = [1,2,3]
+n = len(nums)
+permutations = []
+
+def swap(nums,a,b):
+    temp = nums[a]
+    nums[a] = nums[b]
+    nums[b] = temp
+
+def find_permutations(nums,index,permutations):
+    n = len(nums)
+    if index == n:
+        permutations.append(nums[:])
+        return
+    for i in range(index,n):
+        swap(nums,index,i)
+        find_permutations(nums,index+1,permutations)
+        swap(nums,index,i)
+
+find_permutations(nums,0,permutations)
+permutations.sort() #doesnot ensure lexical order so swapping is needed
+
+index = -1
+for i in range(len(permutations)):
+    if permutations[i] == input:
+        index = i
+        break
+
+if index == len(permutations) - 1:
+    print(first_permutation)
+else:
+    print(permutations[index+1]) 
+```
+SC - O(1)  # no extra space
 TC - O(N! * N)
