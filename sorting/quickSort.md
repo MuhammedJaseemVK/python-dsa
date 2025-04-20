@@ -12,9 +12,9 @@ def partition(self,arr,low,high):
     j=high
     pivot=arr[low]
     while(i<j):
-        while(arr[i]<pivot and i<j):
+        while(arr[i]<pivot and i<=high-1):
             i+=1
-        while(arr[j]>=pivot):
+        while(arr[j]>=pivot and j>=low+1):
             j-=1
         if (i<j):
             temp=arr[i]
