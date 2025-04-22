@@ -46,4 +46,23 @@ print(max_length)
 # SC - O(1)
 
 
+# Optimized
+```py
+nums = [100, 200, 1, 3, 2, 4]
+n = len(nums)
 
+number_set = set(nums)
+max_length = 0
+
+for num in nums:
+    if num - 1 not in number_set: # O(1)
+        length = 0
+        while(num + length) in number_set:
+            length += 1
+        if length > max_length:
+            max_length = length
+
+print(max_length)
+```
+# TC - O(N)
+# SC - O(N)
