@@ -1,0 +1,66 @@
+#Set Matrix Zero
+
+# Bruteforce
+```py
+matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+
+m = len(matrix)
+n = len(matrix[0])
+
+def markRow(nums,i,m):
+    for j in range(m):
+        if nums[i][j] != 0:
+            nums[i][j] = -1
+
+def markCol(nums,j,n):
+    for i in range(n):
+        if nums[i][j] != 0:
+            nums[i][j] = -1
+
+for i in range(m):
+    for j in range(n):
+        if matrix[i][j] == 0:
+            markRow(matrix,i,n)
+            markCol(matrix,j,m)
+
+for i in range(m):
+    for j in range(n):
+        if matrix[i][j] == -1:
+            matrix[i][j] = 0
+
+for i in range(m):
+    for j in range(n):
+        print(matrix[i][j],end=',')
+    print()
+```
+TC O(N*M)*(N + M)) + O(N*M)
+SC O(1)
+
+# Better
+```py
+matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+
+m = len(matrix)
+n = len(matrix[0])
+
+rows = [0] * m
+cols = [0] * n
+
+for i in range(m):
+    for j in range(n):
+        if matrix[i][j] == 0:
+            rows[i] = 1
+            cols[j] = 1
+
+for i in range(m):
+    for j in range(n):
+        if rows[i] or cols[j]:
+            matrix[i][j] = 1
+
+for i in range(m):
+    for j in range(n):
+        print(matrix[i][j],end=',')
+    print()
+```
+TC - O(2(m*n)) = two traversals
+SC - O(m)+O(n)
