@@ -19,3 +19,30 @@ for i in range(n):
 ```
 TC - O(m*n)
 SC - O(m*n)
+
+# Optimized (only for sqaure matrix)
+```py
+matrix = [[1,2,3],[4,5,6],[7,8,9]]
+n = len(matrix)
+
+# finding inplace transpose
+for i in range(n):
+    for j in range(i+1,n):
+        temp = matrix[i][j]
+        matrix[i][j] = matrix[j][i]
+        matrix[j][i] = temp
+
+# reversing rows
+for i in range(n):
+    for j in range(n//2):
+        temp = matrix[i][j]
+        matrix[i][j] = matrix[i][n-1-j]
+        matrix[i][n-1-j] = temp
+
+for i in range(n):
+    for j in range(n):
+        print(matrix[i][j],end=',')
+    print()
+```
+TC - O(n^2)+O(n^2)
+SC - O(1)
