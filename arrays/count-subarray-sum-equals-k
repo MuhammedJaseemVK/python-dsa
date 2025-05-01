@@ -1,0 +1,71 @@
+# Count Subarray sum Equals K
+
+# Bruteforce
+```py
+nums = [3, 1, 2, 4]
+k = 6
+
+count = 0
+n = len(nums)
+for i in range(n):
+    for j in range(i,n):
+        sum = 0
+        for l in range(i,n):
+            sum += nums[l]
+        if sum == k:
+            count+=1
+
+print(count)
+```
+TC - O(n^3)
+SC - O(n)
+
+# better bruteforce
+```py
+nums = [3, 1, 2, 4]
+k = 6
+
+count = 0
+n = len(nums)
+for i in range(n):
+    sum = 0
+    for j in range(i,n):
+        sum += nums[j]
+        if sum == k:
+            count+=1
+
+print(count)
+```
+TC - O(n^2)
+SC - O(n)
+
+# Optimized
+```py
+nums = [3, 1, 2, 4]
+k = 6
+
+n = len(nums)
+hash_map = {}
+prefix_sum = 0
+
+count = 0
+
+for i in range(n):
+    prefix_sum += nums[i]
+
+    if prefix_sum == k:
+        hash_map[prefix_sum] = i
+        count+=1
+
+    remainder = prefix_sum - k
+
+    if remainder in hash_map:
+        count +=1
+
+    if prefix_sum not in hash_map:
+        hash_map[prefix_sum]= i
+
+print(count)
+```
+TC - O(n)
+SC - o(n)
