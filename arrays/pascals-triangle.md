@@ -77,3 +77,61 @@ print(row)
 ```
 TC - O(n)
 SC - O(1)
+
+## Variation 3: Given the number of rows n. Print the first n rows of Pascal’s triangle.
+
+# Better
+```py
+n = 5
+n = n+1
+
+def find_ncr(n,r):
+    if r < n-r:
+        r = n-r
+    
+    result = 1
+
+    for i in range(r):
+        result = result * (n-i)
+        result = result // (i+1)
+    
+    return result
+
+pascals_triangle = []
+for row in range(n):
+    result = []
+    for col in range(row):
+        result.append(find_ncr(row-1,col))
+    pascals_triangle.append(result)
+
+for i in range(n):
+    for j in range(i):
+        print(pascals_triangle[i][j],end=',')
+    if i!=0:
+        print()
+```
+TC - O(n*n*r)
+SC - O(1)
+
+# optimized
+```py
+n = 5
+pascals_triangle = []
+for i in range(n):
+    result = 1
+    row = [1]
+    for j in range(i):
+        result = result * (i-j)
+        result = result // (j+1)
+        row.append(result)
+    pascals_triangle.append(row)
+
+
+for i in range(n):
+    for j in range(i+1):
+        print(pascals_triangle[i][j],end=',')
+    print()
+```
+
+TC - O(n*r)
+SC - O(1)
