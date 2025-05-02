@@ -133,5 +133,5 @@ for i in range(n):
     print()
 ```
 
-TC - O(n*r)
+TC - O(n*n)
 SC - O(1)
