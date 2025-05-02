@@ -1,0 +1,54 @@
+# Find the elements that appears more than N/3 times in the array
+
+# Bruteforce
+```py
+nums = [11, 11, 33, 33, 33, 11]
+n = len(nums)
+
+majority_elements = []
+
+for i in range(n):
+    count  = 0
+    if len(majority_elements) == 0 or majority_elements[0]!=nums[i]:
+        for j in range(n):
+            if nums[i] == nums[j]:
+                count +=1
+        
+        if count > n//3:
+            majority_elements.append(nums[i])
+        
+        if len(majority_elements) == 2:
+            break
+
+print(majority_elements)
+```
+TC - O(N^2)
+SC - O(1)
+
+# Hashmap (Better)
+```py
+nums = [11,33,33,11,33,11]
+n = len(nums)
+
+hash_map = {}
+majority_elements = []
+
+for i in range(n):
+    if nums[i] in hash_map:
+        hash_map[nums[i]] = hash_map[nums[i]] + 1
+    else:
+        hash_map[nums[i]] = 1
+
+    if hash_map[nums[i]] == (n//3) + 1:
+        majority_elements.append(nums[i])
+
+    if len(majority_elements)==2:
+        break
+
+m = len(majority_elements)
+for i in range(m):
+    print(majority_elements[i])
+```
+TC - O(NlogN)
+SC - O(N)
+
