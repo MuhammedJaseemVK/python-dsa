@@ -31,6 +31,7 @@ def findNCR(n,r):
     for i in range(r):
         result = result * (n-i)
         result = result // (i+1)
+    return result
 
 result = findNCR(n-1, c-1) # 1-indexed to 0-indexed
 print(result)
