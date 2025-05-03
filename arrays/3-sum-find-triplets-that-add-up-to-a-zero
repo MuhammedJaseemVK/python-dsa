@@ -1,0 +1,44 @@
+# 3 Sum : Find triplets that add up to a zero
+
+# bruteforce
+```py
+nums = [-1,0,1,2,-1,-4]
+n = len(nums)
+
+result = set() # for unique triplets
+
+for i in range(n-2):
+    for j in range(i+1,n-1):
+        for k in range(j+1,n):
+            if nums[i]+nums[j]+nums[k]==0:
+                triplet = tuple(sorted([nums[i],nums[j],nums[k]]))
+                result.add(triplet)
+
+for i in result:
+    print(i)
+```
+TC - O(N^3 * log(no. of unique triplets))
+SC - O(2 * no. of the unique triplets)  # one for tuple and one for list
+
+# better (sets)
+```py
+nums = [-1,0,1,2,-1,-4]
+n = len(nums)
+unique_triplets = set()
+
+for i in range(n):
+    st  = set()
+    for j in range(i+1,n):
+        third = -(nums[i] + nums[j])
+
+        if third in st:
+            triplet = tuple(sorted([nums[i],nums[j],third]))
+            unique_triplets.add(triplet)
+        
+        st.add(nums[j])
+
+for i in unique_triplets:
+    print(i)
+```
+TC - O(N^2 * log(no. of unique triplets))
+SC - O(2 * no. of the unique triplets)  # one for tuple and one for list
