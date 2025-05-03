@@ -64,7 +64,15 @@ for i in range(n):
         count += 1
     else:
         count -= 1
-print(element)
+
+count = 0
+for i in range(n):
+    if nums[i] == element:
+        count += 1
+if count > n//2:
+    print(element)
+else:
+    print(None)
 
 ```
 TC - O(N)
