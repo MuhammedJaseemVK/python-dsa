@@ -75,5 +75,5 @@ else:
     print(None)
 
 ```
-TC - O(N)
+TC - O(N) + O(N)
 SC - O(1)
