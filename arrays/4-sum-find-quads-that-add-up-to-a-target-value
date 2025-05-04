@@ -23,3 +23,30 @@ for i in unique_quadruplets:
 ```
 TC - O(N^4)
 SC - O(2 * no. of quadruplets)
+
+# better (sets)
+```py
+nums = [1,0,-1,0,-2,2]
+target = 0
+
+n = len(nums)
+unique_quadruples = set()
+
+for i in range(n):
+    for j in range(i+1,n):
+        st = set()
+        for k in range(j+1,n):
+            fourth_number = -(nums[i] + nums[j] + nums[k] - target)
+            
+            if fourth_number in st:
+                quadruple = [nums[i],nums[j],nums[k],fourth_number]
+                quadruple.sort()
+                unique_quadruples.add(tuple(quadruple))
+
+            st.add(nums[k])
+
+for i in unique_quadruples:
+    print(i)
+```
+TC - O(N^3 * log(M)) - where M is the no.of quadpruples
+SC - O(2 * no.of quadruples)
