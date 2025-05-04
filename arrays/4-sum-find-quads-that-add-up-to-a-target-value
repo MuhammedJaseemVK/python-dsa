@@ -1,0 +1,25 @@
+# 4 Sum | Find Quads that add up to a target value
+
+# bruteforce
+```py
+nums = [1,0,-1,0,-2,2]
+target = 0
+
+n = len(nums)
+unique_quadruplets = set()
+
+
+for i in range(n-3):
+    for j in range(i+1,n-2):
+        for k in range(j+1,n-1):
+            for l in range(k+1,n):
+                sum = nums[i]+nums[j]+nums[k]+nums[l]
+                if sum == target:
+                    quadruplet = [nums[i],nums[j],nums[k],nums[l]]
+                    quadruplet.sort()
+                    unique_quadruplets.add(tuple(quadruplet))
+for i in unique_quadruplets:
+    print(i)
+```
+TC - O(N^4)
+SC - O(2 * no. of quadruplets)
