@@ -50,3 +50,47 @@ for i in unique_quadruples:
 ```
 TC - O(N^3 * log(M)) - where M is the no.of quadpruples
 SC - O(2 * no.of quadruples)
+
+# optimized
+```py
+nums = [1,0,-1,0,-2,2]
+target = 0
+
+n = len(nums)
+nums.sort()
+
+unique_quadruples = []
+
+for i in range(n):
+    # skipping duplicates
+    if i != 0 and nums[i] == nums[i-1]:
+        continue
+    
+    for j in range(i+1,n):
+        if j!=0 and nums[j] == nums[j-1]:
+            continue
+        
+        k = j+1
+        l = n-1
+        while k<l:
+            total_sum = nums[i] + nums[j] + nums[k] + nums[l]
+            if total_sum < target:
+                k += 1
+            elif total_sum > target:
+                l -= 1
+            else:
+                quadruple = [nums[i],nums[j],nums[k],nums[l]]
+                unique_quadruples.append(quadruple)
+                k += 1
+                l -= 1
+                # skipping duplicates
+                while k<l and nums[k] == nums[k-1]:
+                    k += 1
+                while k<l and nums[l] == nums[l+1]:
+                    l -= 1
+
+for i in unique_quadruples:
+    print(i)
+```
+TC - O(N^3) - where M is the no.of quadpruples
+SC - O(1)
