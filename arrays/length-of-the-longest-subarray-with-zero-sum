@@ -1,0 +1,19 @@
+Length of the longest subarray with zero Sum
+
+```py
+nums = [9, -3, 3, -1, 6, -5]
+n = len(nums)
+
+longest_subarray_length = 0
+
+for i in range(n):
+    sum = 0
+    for j in range(i,n):
+        sum += nums[j]
+        if sum == 0 and (j-i+1) > longest_subarray_length:
+            longest_subarray_length = j-i+1
+
+print(longest_subarray_length)
+```
+TC - O(n^2)
+SC - O(1)
