@@ -1,19 +1,46 @@
-Length of the longest subarray with zero Sum
+# Length of the longest subarray with zero Sum
 
+# bruteforce
 ```py
 nums = [9, -3, 3, -1, 6, -5]
 n = len(nums)
 
-longest_subarray_length = 0
+max_length = 0
 
 for i in range(n):
     sum = 0
     for j in range(i,n):
         sum += nums[j]
-        if sum == 0 and (j-i+1) > longest_subarray_length:
-            longest_subarray_length = j-i+1
+        if sum == 0 and (j-i+1) > max_length:
+            max_length = j-i+1
 
-print(longest_subarray_length)
+print(max_length)
 ```
-TC - O(n^2)
+TC - O(N^2)
 SC - O(1)
+
+# optimized
+```py
+nums = [9, -3, 3, -1, 6, -5]
+n = len(nums)
+
+prefix_sum = 0
+hash_map = {}
+max_length = 0
+
+for i in range(n):
+    prefix_sum += nums[i]
+
+    if prefix_sum == 0:
+        max_length = i + 1
+    elif prefix_sum in hash_map:
+        length = i - hash_map[prefix_sum]
+        if length > max_length:
+            max_length = length
+    else:
+        hash_map[prefix_sum] = i
+
+print(max_length)
+```
+TC - O(N)
+SC - O(N)
