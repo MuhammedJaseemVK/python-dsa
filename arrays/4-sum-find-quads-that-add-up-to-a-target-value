@@ -94,3 +94,31 @@ for i in unique_quadruples:
 ```
 TC - O(N^3) - where M is the no.of quadpruples
 SC - O(1)
+
+# optimized
+```py
+nums = [4, 2, 2, 6, 4]
+n = len(nums)
+k = 6
+
+count = 0
+xr = 0
+hash_map = {}
+
+hash_map[0] = 1
+
+for i in range(n):
+    xr = xr ^ nums[i]
+
+    x = xr ^ k
+
+    if x in hash_map:
+        count = count + hash_map[x]
+
+    if xr in hash_map:
+        hash_map[xr] += 1
+    else:
+        hash_map[xr] = 1
+
+print(count)
+```
