@@ -44,3 +44,30 @@ print(arr2)
 ```
 SC - O(n+m) + O(n+m)
 TC - O(n+m)
+
+# Optimal 1
+```py
+arr1 = [1, 4, 8, 10] 
+arr2 = [2, 3 ,9]
+
+n = len(arr1)
+m = len(arr2)
+
+left = m-1
+right = 0
+
+while arr1[left] > arr2[right]:
+    temp = arr1[left]
+    arr1[left] = arr2[right]
+    arr2[right] = temp
+    left -= 1
+    right += 1
+
+arr1.sort()
+arr2.sort()
+
+print(arr1)
+print(arr2)
+```
+TC - O(min(n, m)) + O(n*logn) + O(m*logm)
+SC - O(1)
