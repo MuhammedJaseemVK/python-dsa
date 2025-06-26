@@ -105,7 +105,7 @@ for i in range(2*min_count):
 if len(positives) > len(negatives):
     for i in range(len(positives)-len(negatives)):
         nums[2*min_count+i] = positives[min_count+i]
-if len(positives) > len(negatives):
+if len(positives) < len(negatives):
     for i in range(len(negatives)-len(positives)):
         nums[2*min_count+i] =negatives[min_count+i]
 
