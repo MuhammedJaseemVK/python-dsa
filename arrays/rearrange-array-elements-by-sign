@@ -76,7 +76,7 @@ print(nums)
 # TC - O(N)
 # SC - O(1)
 
-# Rearrange Array Elements by Sign (no of positives and negatives are equal)
+# Rearrange Array Elements by Sign (no of positives and negatives are not equal)
 
 ```py
 # rearrange-array-elements-by-sign (not equal number of positives and negatives)
