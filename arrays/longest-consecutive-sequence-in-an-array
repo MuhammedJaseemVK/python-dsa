@@ -40,7 +40,7 @@ max_length = 1
 for i in range(n-1):
     if nums[i]+1 == nums[i+1]:
         length += 1
-    else:
+    else if nums[i] != nums[i+1] :
         length = 1
     if length > max_length:
         max_length = length
